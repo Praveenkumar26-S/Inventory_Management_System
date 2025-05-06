@@ -52,7 +52,7 @@ def logout():
 def index():
     return render_template('index.html')
 
-# --- Product CRUD ---
+# Product CRUD 
 @app.route('/products', methods=['GET', 'POST'])
 def products():
     if request.method == 'POST':
@@ -107,7 +107,7 @@ def delete_product(product_id):
     flash("Product deleted.")
     return redirect(url_for('products'))
 
-# --- Location CRUD ---
+# Location CRUD 
 @app.route('/locations', methods=['GET', 'POST'])
 def locations():
     if request.method == 'POST':
@@ -147,7 +147,7 @@ def delete_location(location_id):
     flash("Location deleted.")
     return redirect(url_for('locations'))
 
-# --- ProductMovement CRUD with business logic ---
+# ProductMovement CRUD with business logic 
 @app.route('/movements', methods=['GET', 'POST'])
 def movements():
     products = Product.query.all()
@@ -277,7 +277,7 @@ def delete_movement(movement_id):
     flash("Movement deleted.")
     return redirect(url_for('movements'))
 
-# --- Report ---
+# Report 
 @app.route('/report')
 def report():
     products = Product.query.all()
