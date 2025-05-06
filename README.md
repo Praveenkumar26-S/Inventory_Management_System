@@ -100,6 +100,10 @@ The app will be available at [http://127.0.0.1:5000](http://127.0.0.1:5000).
     
 **View reports** to see product balances in each location.
 
+## Demo Video
+
+https://www.linkedin.com/posts/praveenkumar-s-7a0635269_flask-python-webdevelopment-activity-7325490423009792000-w7On?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEHEcSgBiZD0x3wfZ_4qWsh5_p-BFX5gRbk
+
 ##  Security
 
 All main routes require login.
