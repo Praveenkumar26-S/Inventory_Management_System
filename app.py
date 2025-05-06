@@ -6,6 +6,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inventory.db'
 app.config['SECRET_KEY'] = 'your-secret-key'
 db.init_app(app)
 
+
 @app.before_request
 def create_tables():
     db.create_all()
