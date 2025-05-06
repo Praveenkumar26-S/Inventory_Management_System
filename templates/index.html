@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Inventory Management System</h1>
+<div class="dashboard">
+    <a href="{{ url_for('products') }}" class="icon-card">Product</a>
+    <a href="{{ url_for('locations') }}" class="icon-card">Location</a>
+    <a href="{{ url_for('movements') }}" class="icon-card">ProductMovement</a>
+    <a href="{{ url_for('report') }}" class="icon-card">Report</a>
+</div>
+{% endblock %}

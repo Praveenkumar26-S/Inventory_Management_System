@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Product Balance Report</h2>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Warehouse</th>
+        <th>Qty</th>
+    </tr>
+    {% for product in products %}
+        {% for location in locations %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ location.name }}</td>
+                <td>{{ balances[(product.product_id, location.location_id)] }}</td>
+            </tr>
+        {% endfor %}
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Product Movement</h2>
+<form method="POST">
+    <input type="number" name="qty" value="{{ movement.qty }}" min="1" required>
+    <button type="submit">Update</button>
+</form>
+<a href="{{ url_for('movements') }}">Back</a>
+{% endblock %}

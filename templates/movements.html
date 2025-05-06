@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Product Movements</h2>
+<form method="POST">
+    <select name="product_id" required>
+        <option value="">--Product--</option>
+        {% for p in products %}
+        <option value="{{ p.product_id }}">{{ p.name }}</option>
+        {% endfor %}
+    </select>
+    <select name="movement_type" id="movement_type" required onchange="updateFields()">
+        <option value="unknown_to_hub">Unknown to Hub</option>
+        <option value="hub_to_hub">Hub to Hub</option>
+        <option value="hub_to_customer">Hub to Customer</option>
+    </select>
+    <span id="from_location_field">
+        <select name="from_location">
+            <option value="">--From Location--</option>
+            {% for l in locations %}
+            <option value="{{ l.location_id }}">{{ l.name }}</option>
+            {% endfor %}
+        </select>
+    </span>
+    <span id="to_location_field">
+        <select name="to_location">
+            <option value="">--To Location--</option>
+            {% for l in locations %}
+            <option value="{{ l.location_id }}">{{ l.name }}</option>
+            {% endfor %}
+        </select>
+    </span>
+    <input type="number" name="qty" min="1" placeholder="Qty" required>
+    <button type="submit">Add Movement</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th><th>Timestamp</th><th>Product</th>
+        <th>Type</th><th>From</th><th>To</th><th>Qty</th><th>Actions</th>
+    </tr>
+    {% for m in movements %}
+    <tr>
+        <td>{{ m.movement_id }}</td>
+        <td>{{ m.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        <td>{{ m.product_id }}</td>
+        <td>{{ m.movement_type }}</td>
+        <td>{{ m.from_location or '-' }}</td>
+        <td>{{ m.to_location or '-' }}</td>
+        <td>{{ m.qty }}</td>
+        <td>
+            <a href="{{ url_for('edit_movement', movement_id=m.movement_id) }}">Edit</a>
+            <a href="{{ url_for('delete_movement', movement_id=m.movement_id) }}" onclick="return confirm('Delete?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<script>
+function updateFields() {
+    var type = document.getElementById('movement_type').value;
+    document.getElementById('from_location_field').style.display = (type === 'unknown_to_hub') ? 'none' : '';
+    document.getElementById('to_location_field').style.display = (type === 'hub_to_customer') ? 'none' : '';
+}
+updateFields();
+</script>
+{% endblock %}
